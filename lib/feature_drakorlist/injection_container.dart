@@ -12,7 +12,7 @@ Future<void> initializeDependencies() async {
   //  Dependencies
   sl.registerSingleton<DramaRemoteDatabase>(DramaRemoteDatabaseImpl());
 
-  // sl.registerSingleton<DramaRepository>(DramaRepositoryImpl())
+  sl.registerSingleton<DramaRepository>(DramaRepositoryImpl(sl()));
 
   //  Use Cases
   sl.registerSingleton<GetAllDramasUseCase>(

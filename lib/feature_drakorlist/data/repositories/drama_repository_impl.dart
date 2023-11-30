@@ -1,18 +1,16 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:mydrakorlist/feature_drakorlist/data/data_resources/drama_remote.dart';
 import 'package:mydrakorlist/feature_drakorlist/domain/repositories/drama_repository.dart';
 
 import '../models/drama.dart';
 
 class DramaRepositoryImpl implements DramaRepository{
-  DramaRemoteDatabase dramaRemoteDatabase;
+  final DramaRemoteDatabase _dramaRemoteDatabase;
 
-  DramaRepositoryImpl({required this.dramaRemoteDatabase});
+  DramaRepositoryImpl(this._dramaRemoteDatabase);
 
   @override
   Future<List<DramaModel>> getAllDramas() async {
-    final results = await dramaRemoteDatabase.getAllDramas();
+    final results = await _dramaRemoteDatabase.getAllDramas();
     return results;
   }
 

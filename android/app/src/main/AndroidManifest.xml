@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mydrakorlist">
+    package="com.example.mydrakorlist_2">
    <application
-        android:label="mydrakorlist"
+        android:label="mydrakorlist_2"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
