@@ -6,10 +6,11 @@ import 'package:mydrakorlist/feature_drakorlist/presentation/bloc/drama_blocs.da
 import 'package:mydrakorlist/feature_drakorlist/presentation/pages/home/drakor_lists.dart';
 
 import 'feature_drakorlist/presentation/bloc/drama_events.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await initializeDependencies();
 
   runApp(const MyApp());

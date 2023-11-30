@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "777968460628",
+    "project_id": "mydrakorlist-e82bc",
+    "storage_bucket": "mydrakorlist-e82bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777968460628:android:3a6cd2e809f64769485ec1",
+        "android_client_info": {
+          "package_name": "com.example.mydrakorlist_2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwira2lE9jOvjgwC7vVhoQeoCUhg4fbPA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
