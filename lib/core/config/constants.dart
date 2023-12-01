@@ -1,0 +1,1 @@
+String errorUrlImage = 'https://www.globalsign.com/application/files/9516/0389/3750/What_Is_an_SSL_Common_Name_Mismatch_Error_-_Blog_Image.jpg';
