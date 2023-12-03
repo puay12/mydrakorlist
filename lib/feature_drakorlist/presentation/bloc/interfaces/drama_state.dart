@@ -8,5 +8,5 @@ abstract class DramaState extends Equatable{
   const DramaState({this.drama_lists, this.error});
 
   @override
-  List<Object> get props => [drama_lists!, error!];
+  List<Object> get props => [drama_lists ?? [], error ?? ''];
 }

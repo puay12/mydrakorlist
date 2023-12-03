@@ -7,6 +7,7 @@ import 'package:mydrakorlist/feature_drakorlist/domain/entities/drama.dart';
 import 'package:mydrakorlist/feature_drakorlist/presentation/bloc/drama_blocs.dart';
 import 'package:mydrakorlist/feature_drakorlist/presentation/bloc/drama_states.dart';
 import 'package:mydrakorlist/feature_drakorlist/presentation/bloc/interfaces/drama_state.dart';
+import 'package:mydrakorlist/feature_drakorlist/presentation/pages/add_update_drama/add_update_drama.dart';
 import 'package:mydrakorlist/feature_drakorlist/presentation/pages/drama_detail/drama_detail.dart';
 import 'package:mydrakorlist/feature_drakorlist/presentation/widgets/drama_tile.dart';
 
@@ -17,19 +18,32 @@ class DrakorLists extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
     return SafeArea(
       child: Scaffold(
+        key: _scaffoldKey,
         appBar: _buildAppbar(),
         body: SingleChildScrollView(
-          padding: EdgeInsets.all(24),
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           child: _buildBody(),
         ),
+        floatingActionButton: CircleAvatar(
+          radius: 30,
+          backgroundColor: appColor.defaultPrimary,
+          child: IconButton(
+            icon: Icon(Icons.add, color: appColor.defaultWhite),
+            color: appColor.defaultPrimary,
+            onPressed: () => _openAddUpdateDramaPage(context),
+          ),
+        )
       ),
     );
   }
 
   _buildAppbar(){
     return AppBar(
+      automaticallyImplyLeading: false,
       title: Text(
         'My Drakor Lists',
         style: appTypo.headerTitle,
@@ -74,6 +88,13 @@ class DrakorLists extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => DramaDetail(drama: drama)),
+    );
+  }
+
+  void _openAddUpdateDramaPage(BuildContext context){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => AddUpdateDramaPage()),
     );
   }
 }

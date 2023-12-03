@@ -1,26 +1,31 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:mydrakorlist/core/config/constants.dart' as appCons;
 import 'package:mydrakorlist/core/config/theme/color.dart' as appColor;
 import 'package:mydrakorlist/core/config/theme/typography.dart' as appTypo;
 
 import '../../../domain/entities/drama.dart';
+import '../add_update_drama/add_update_drama.dart';
 
 class DramaDetail extends StatelessWidget {
-  final DramaEntity? drama;
+  final DramaEntity drama;
 
-  DramaDetail({Key? key, this.drama}) : super(key: key);
+  DramaDetail({Key? key, required this.drama}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const _actionTitles = ['Update Drama', 'Delete Drama'];
+
     return SafeArea(
       child: Scaffold(
         appBar: _buildAppbar(context),
         body: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           child: _buildBody(context),
         ),
+        floatingActionButton: _buildFloatingButton(context)
       ),
     );
   }
@@ -42,6 +47,28 @@ class DramaDetail extends StatelessWidget {
       ),
       centerTitle: true,
       backgroundColor: appColor.defaultPrimary,
+    );
+  }
+
+  _buildFloatingButton(BuildContext context){
+    return SpeedDial(
+      icon: Icons.more_vert,
+      backgroundColor: appColor.defaultPrimary,
+      overlayColor: appColor.defaultGray,
+      overlayOpacity: 0.6,
+      children: [
+        SpeedDialChild(
+            child: Icon(Icons.edit, color: appColor.defaultWhite),
+            label: 'Update',
+            backgroundColor: appColor.defaultSuccess,
+            onTap: () => _openAddUpdateDramaPage(context)
+        ),
+        SpeedDialChild(
+            child: Icon(Icons.delete_rounded, color: appColor.defaultWhite),
+            label: 'Delete',
+            backgroundColor: appColor.defaultError
+        ),
+      ],
     );
   }
 
@@ -71,7 +98,7 @@ class DramaDetail extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: drama!.posterImage ?? appCons.errorUrlImage,
       imageBuilder: (context, imageProvider) => Container(
-        margin: EdgeInsets.only(top: 12),
+        margin: EdgeInsets.only(top: 12, bottom: 8),
         height: 300,
         decoration: BoxDecoration(
           image: DecorationImage(image: imageProvider, fit: BoxFit.contain),
@@ -200,6 +227,13 @@ class DramaDetail extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void _openAddUpdateDramaPage(BuildContext context){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => AddUpdateDramaPage(drama: drama)),
     );
   }
 }

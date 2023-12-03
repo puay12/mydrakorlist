@@ -45,7 +45,7 @@ class DramaTile extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: drama.posterImage ?? appCons.errorUrlImage,
       imageBuilder: (context, imageProvider) => Container(
-        height: 120,
+        height: 130,
         decoration: BoxDecoration(
           image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
           borderRadius: BorderRadius.circular(12),
@@ -68,24 +68,31 @@ class DramaTile extends StatelessWidget {
     return Text(
       drama.title ?? "",
       style: appTypo.bodyTitle,
+      overflow: TextOverflow.ellipsis,
     );
   }
 
   Widget _buildDetail() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [_buildInfo(), _buildRating()],
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [_buildInfo(), _buildRating()],
+        ),
+      ],
     );
   }
 
   Widget _buildInfo() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildGenre(),
-        SizedBox(height: 4),
-        _buildStatus()
-      ],
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildGenre(),
+          SizedBox(height: 4),
+          _buildStatus()
+        ],
+      ),
     );
   }
 
@@ -108,6 +115,8 @@ class DramaTile extends StatelessWidget {
     return Text(
       drama.genre ?? "",
       style: appTypo.bodySubtitle,
+      overflow: TextOverflow.ellipsis,
+      softWrap: false,
     );
   }
 

@@ -16,7 +16,7 @@ TextStyle bodyTitle = GoogleFonts.lato(
 
 TextStyle bodySubtitle = GoogleFonts.lato(
     fontSize: 14,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w600,
     color: appColor.defaultBlack
 );
 
