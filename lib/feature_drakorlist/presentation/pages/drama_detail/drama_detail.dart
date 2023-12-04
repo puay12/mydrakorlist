@@ -25,8 +25,6 @@ class DramaDetail extends StatefulWidget {
 class _DramaDetailState extends State<DramaDetail> {
   @override
   Widget build(BuildContext context) {
-    const _actionTitles = ['Update Drama', 'Delete Drama'];
-
     return SafeArea(
       child: Scaffold(
         appBar: _buildAppbar(context),

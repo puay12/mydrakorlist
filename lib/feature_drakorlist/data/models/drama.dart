@@ -1,7 +1,3 @@
-
-
-import 'package:flutter/cupertino.dart';
-
 import '../../domain/entities/drama.dart';
 
 class DramaModel extends DramaEntity{
