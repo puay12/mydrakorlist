@@ -3,6 +3,7 @@ import 'package:mydrakorlist/feature_drakorlist/data/data_resources/drama_remote
 import 'package:mydrakorlist/feature_drakorlist/data/repositories/drama_repository_impl.dart';
 import 'package:mydrakorlist/feature_drakorlist/domain/repositories/drama_repository.dart';
 import 'package:mydrakorlist/feature_drakorlist/domain/usecases/add_update_drama.dart';
+import 'package:mydrakorlist/feature_drakorlist/domain/usecases/delete_drama.dart';
 import 'package:mydrakorlist/feature_drakorlist/presentation/bloc/drama_blocs.dart';
 
 import 'domain/usecases/get_all_dramas.dart';
@@ -24,8 +25,12 @@ Future<void> initializeDependencies() async {
     AddUpdateDramaUseCase(sl())
   );
 
+  sl.registerSingleton<DeleteDramaUseCase>(
+      DeleteDramaUseCase(sl())
+  );
+
   //  Blocs
   sl.registerFactory<DramaBloc>(
-          () => DramaBloc(sl(), sl())
+          () => DramaBloc(sl(), sl(), sl())
   );
 }

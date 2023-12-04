@@ -8,10 +8,7 @@ import 'package:mydrakorlist/feature_drakorlist/domain/entities/drama.dart';
 import 'package:mydrakorlist/feature_drakorlist/presentation/bloc/drama_blocs.dart';
 import 'package:mydrakorlist/feature_drakorlist/presentation/widgets/custom_text_formgroup.dart';
 
-import '../../../injection_container.dart';
 import '../../bloc/drama_events.dart';
-import '../../bloc/drama_states.dart';
-import '../../bloc/interfaces/drama_state.dart';
 import '../home/drakor_lists.dart';
 
 class AddUpdateDramaPage extends StatefulWidget {
@@ -36,11 +33,13 @@ class _AddUpdateDramaPageState extends State<AddUpdateDramaPage> {
   TextEditingController _myReviewController  = TextEditingController();
 
   String _statusController = '';
+  String _docId = '';
 
   @override
   void initState() {
     super.initState();
     if(widget.drama != null){
+      _docId = widget.drama!.id!;
       _titleController.text  = widget.drama!.title!;
       _genreController.text  = widget.drama!.genre!;
       _synopsisController.text  = widget.drama!.synopsis!;
@@ -50,6 +49,7 @@ class _AddUpdateDramaPageState extends State<AddUpdateDramaPage> {
       _myReviewController.text  = widget.drama!.myReview!;
       _statusController = appExt.boolToString(widget.drama!.status!);
     } else{
+      _docId = appExt.generateRandomString(20);
       _statusController = 'true';
     }
   }
@@ -232,6 +232,7 @@ class _AddUpdateDramaPageState extends State<AddUpdateDramaPage> {
         onPressed: (){
           setState(() {
             _newDrama = DramaEntity(
+              id: _docId,
               title: _titleController.text,
               genre: _genreController.text,
               synopsis: _synopsisController.text,
@@ -246,14 +247,16 @@ class _AddUpdateDramaPageState extends State<AddUpdateDramaPage> {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => DrakorLists())
-          ).then((value) => ScaffoldMessenger.of(context).showSnackBar(
-              new SnackBar(
-                content: Text(
-                  widget.drama == null ? 'Successfully added the new drama' : 'Successfully updated the drama',
-                  style: appTypo.bodySubtitle.copyWith(color: appColor.defaultWhite),
-                ),
-                backgroundColor: appColor.defaultSuccess,
-              )));
+          );
+          ScaffoldMessenger.of(context).showSnackBar(
+            new SnackBar(
+              content: Text(
+                widget.drama == null ? 'Successfully added the new drama' : 'Successfully updated the drama',
+                style: appTypo.bodySubtitle.copyWith(color: appColor.defaultWhite),
+              ),
+              backgroundColor: appColor.defaultSuccess,
+            )
+          );
         },
       ),
     );

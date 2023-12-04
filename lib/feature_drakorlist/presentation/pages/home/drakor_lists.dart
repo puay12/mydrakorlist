@@ -11,8 +11,6 @@ import 'package:mydrakorlist/feature_drakorlist/presentation/pages/add_update_dr
 import 'package:mydrakorlist/feature_drakorlist/presentation/pages/drama_detail/drama_detail.dart';
 import 'package:mydrakorlist/feature_drakorlist/presentation/widgets/drama_tile.dart';
 
-import '../../../data/models/drama.dart';
-
 class DrakorLists extends StatelessWidget {
   const DrakorLists({Key? key}) : super(key: key);
 

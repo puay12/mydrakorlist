@@ -24,14 +24,13 @@ class DramaRepositoryImpl implements DramaRepository{
   @override
   Future<void> addOrUpdate(DramaEntity drama) async {
     final drama_doc = toMap(drama);
-
     await _dramaRemoteDataSource.addOrUpdate(drama_doc);
   }
 
   @override
-  Future<void> delete(DramaEntity drama) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<void> delete(DramaEntity drama) async {
+    final drama_doc = toMap(drama);
+    await _dramaRemoteDataSource.delete(drama_doc);
   }
 
   DramaEntity toEntity(DramaModel model){

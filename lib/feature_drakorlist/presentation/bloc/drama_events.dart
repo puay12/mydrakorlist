@@ -10,3 +10,7 @@ class GetAllDramas extends DramaEvent{
 class AddUpdateDrama extends DramaEvent{
   AddUpdateDrama(DramaEntity drama) : super(drama: drama);
 }
+
+class DeleteDrama extends DramaEvent{
+  DeleteDrama(DramaEntity drama) : super(drama: drama);
+}
